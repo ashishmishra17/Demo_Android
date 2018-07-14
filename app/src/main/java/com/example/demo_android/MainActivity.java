@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
+import com.microsoft.appcenter.push.Push;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
                 Analytics.class, Crashes.class);
 
 
+        Push.setSenderId("553681130350");
+        AppCenter.start(getApplication(), "c24a87e0-1e40-4235-b9bb-3291fdde94e5", Push.class);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Analytics.trackEvent("Action Button clicked");
+
+                int i = 1 / 0;
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
